@@ -293,7 +293,7 @@ reserveButton.addEventListener("click", function () {
   // Muestra el SweetAlert
   Swal.fire({
     html: `
-      <p>👉Para reservar realizá una seña de $400 <br> 💈 Si no podés asistir avisá con anticipación, y tu seña quedará a favor en tu próximo corte 💈 <br> Gracias!</p>
+      <p>👉Para finalizar realizá una seña de $400 <br> 💈 Si no podés asistir avisá con anticipación, y tu seña quedará a favor en tu próximo corte 💈 <br> Gracias!</p>
   
       <div id="acciones" style="display: flex; flex-direction: column;">
         
@@ -301,15 +301,16 @@ reserveButton.addEventListener("click", function () {
         <a href="${urlWhatsApp}" target="_blank" class="link-accion">COMPARTIR COMPROBANTE</a>
       </div>
     `,
-    imageUrl: './img/ISOTIPO PNG SINFONDO.png', // Reemplaza con la ruta a tu imagen
-    imageWidth: 80, // Ajusta el ancho según tus necesidades
-    imageHeight: 80, // Ajusta el alto según tus necesidades
-    imageAlt: 'Un logo personalizado', // Texto alternativo para la imagen
-    showCancelButton: true,
-    showConfirmButton: false,
-    cancelButtonText: 'Cerrar',
+    imageUrl: './img/ISOTIPO PNG SINFONDO.png',
+    imageWidth: 320,
+    imageHeight: 320,
+    imageAlt: 'Un logo personalizado',
+    showCancelButton: false, // Ocultamos el botón de cancelar
+    showConfirmButton: false, // No se muestra el botón de confirmar
+    showCloseButton: true, // Mostramos la cruz para cerrar
+    closeButtonHtml: '&times;', 
   });
-  
+ 
 });
 
 // Copiar CBU o Alias al portapapeles

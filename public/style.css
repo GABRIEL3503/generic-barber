@@ -272,10 +272,14 @@ font-size: 45px!important;
 
  #acciones a{
   font-weight: bold;
-  color: #2c61c5;
+
   margin: 8px 0;
   background-color: transparent;
   border: none;
-  color: #1b1b1b;
+  color: #3558c9;
 font-size: 32px;
+ }
+
+ .div:where(.swal2-container){
+  margin-top: 0!important;
  }
