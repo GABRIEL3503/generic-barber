@@ -285,6 +285,7 @@ font-size: 32px;
  }
 
  .icono-flecha {
+  top: 10px;
   position: absolute; /* Posicionamiento absoluto */
   left: 0;
   width: 147px;
