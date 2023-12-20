@@ -301,7 +301,7 @@ reserveButton.addEventListener("click", function () {
         <a href="${urlWhatsApp}" target="_blank" class="link-accion">COMPARTIR COMPROBANTE</a>
       </div>
     `,
-    imageUrl: './img/ISOTIPO PNG SINFONDO.png',
+    imageUrl: './img/Logo APP Barbe generica.png',
     imageWidth: 320,
     imageHeight: 320,
     imageAlt: 'Un logo personalizado',
