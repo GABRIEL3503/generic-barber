@@ -269,3 +269,11 @@ font-size: 45px!important;
     text-decoration: underline;
     background-color: transparent;
  }
+
+ #acciones a{
+  margin: 17px 0;
+  background-color: transparent;
+  border: none;
+  color: #1b1b1b;
+font-size: 32px;
+ }

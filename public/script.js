@@ -297,7 +297,7 @@ reserveButton.addEventListener("click", function () {
     <p>👉Para reservar realizá una seña de $400 <br> 💈 Si no podés asistir avisá con anticipación, y tu seña quedará a favor en tu próximo corte 💈 <br> Gracias!</p>
   
     <div id="acciones" style="display: flex; flex-direction: column;">
-      <a href="javascript:void(0);" id="copyCBU" class="link-accion">COPIAR CBU</a>
+      
       <a href="javascript:void(0);" id="copyAlias" class="link-accion">COPIAR ALIAS</a>
       <a href="${urlWhatsApp}" target="_blank" class="link-accion">COMPARTIR COMPROBANTE</a>
     </div>
