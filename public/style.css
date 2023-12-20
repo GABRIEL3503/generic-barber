@@ -280,11 +280,11 @@ font-size: 45px!important;
 font-size: 32px;
  }
 
- .swal2-html-container{
-  margin-top: -1!important;
+ #swal2-html-container{
+  margin-top: -1px!important;
  }
 
- .icono-flecha {
+ #icono-flecha {
   top: 10px;
   position: absolute; /* Posicionamiento absoluto */
   left: 0;
