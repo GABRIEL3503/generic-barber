@@ -292,22 +292,24 @@ reserveButton.addEventListener("click", function () {
   let urlWhatsApp = `https://api.whatsapp.com/send?phone=2996738175&text=${mensajeCodificado}`;
   // Muestra el SweetAlert
   Swal.fire({
-    title: 'ESTÁS A UN PASO',
-    html:`
-    <p>👉Para reservar realizá una seña de $400 <br> 💈 Si no podés asistir avisá con anticipación, y tu seña quedará a favor en tu próximo corte 💈 <br> Gracias!</p>
+    html: `
+      <p>👉Para reservar realizá una seña de $400 <br> 💈 Si no podés asistir avisá con anticipación, y tu seña quedará a favor en tu próximo corte 💈 <br> Gracias!</p>
   
-    <div id="acciones" style="display: flex; flex-direction: column;">
-      
-      <a href="javascript:void(0);" id="copyAlias" class="link-accion">COPIAR ALIAS</a>
-      <a href="${urlWhatsApp}" target="_blank" class="link-accion">COMPARTIR COMPROBANTE</a>
-    </div>
-  `,
-    icon: 'info',
+      <div id="acciones" style="display: flex; flex-direction: column;">
+        
+        <a href="javascript:void(0);" id="copyAlias" class="link-accion">COPIAR ALIAS</a>
+        <a href="${urlWhatsApp}" target="_blank" class="link-accion">COMPARTIR COMPROBANTE</a>
+      </div>
+    `,
+    imageUrl: './img/Logo APP Barbe generica.png', // Reemplaza con la ruta a tu imagen
+    imageWidth: 80, // Ajusta el ancho según tus necesidades
+    imageHeight: 80, // Ajusta el alto según tus necesidades
+    imageAlt: 'Un logo personalizado', // Texto alternativo para la imagen
     showCancelButton: true,
     showConfirmButton: false,
     cancelButtonText: 'Cerrar',
   });
-});
+  
 
 // Copiar CBU o Alias al portapapeles
 document.addEventListener('click', function(event) {
