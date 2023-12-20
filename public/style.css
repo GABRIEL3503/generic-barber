@@ -264,7 +264,7 @@ font-size: 45px!important;
  }
 
  #login-button{
-  letter-spacing: 4px;
+  letter-spacing: 1px;
     color: white;
     text-decoration: underline;
     background-color: transparent;
@@ -286,7 +286,13 @@ font-size: 32px;
 
  .icono-flecha {
   position: absolute; /* Posicionamiento absoluto */
+  left: 0;
   width: 147px;
-  height: 82px;
+  height: 95px;
   /* Ajusta el tamaño según tus necesidades */
+}
+
+#back{
+background-color: transparent;
+display: flex;
 }
