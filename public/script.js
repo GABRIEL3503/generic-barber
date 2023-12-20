@@ -292,12 +292,10 @@ reserveButton.addEventListener("click", function () {
   let urlWhatsApp = `https://api.whatsapp.com/send?phone=2996724372&text=${mensajeCodificado}`;
   // Muestra el SweetAlert
   Swal.fire({
-    title: 'RESERVA DE TURNO',
+    title: 'ESTAS A UN PASO',
     html:`
     <p>👉Para reservar realizá una seña de $400 <br> 💈 Si no podés asistir avisá con anticipación, y tu seña quedará a favor en tu próximo corte 💈 <br> Gracias!</p>
-    <p><strong>CBU:</strong> ${cbu}</p>
-    <p><strong>Alias:</strong> ${aliasCBU}</p>
-    <p><strong>Teléfono:</strong> ${phoneNumber}</p>
+  
     <div id="acciones" style="display: flex; flex-direction: column;">
       <a href="javascript:void(0);" id="copyCBU" class="link-accion">COPIAR CBU</a>
       <a href="javascript:void(0);" id="copyAlias" class="link-accion">COPIAR ALIAS</a>
