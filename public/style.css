@@ -283,3 +283,11 @@ font-size: 32px;
  .div:where(.swal2-container){
   margin-top: -1!important;
  }
+
+ .icono-flecha {
+  position: absolute; /* Posicionamiento absoluto */
+  left: 0; /* Alineado a la izquierda */
+  width: 50px; /* Ancho del ícono */
+  height: 50px; /* Alto del ícono */
+  /* Ajusta el tamaño según tus necesidades */
+}
