@@ -281,5 +281,5 @@ font-size: 32px;
  }
 
  .div:where(.swal2-container){
-  margin-top: 0!important;
+  margin-top: -1!important;
  }

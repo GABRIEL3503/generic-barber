@@ -293,7 +293,7 @@ reserveButton.addEventListener("click", function () {
   // Muestra el SweetAlert
   Swal.fire({
     html: `
-      <p>👉Para finalizar realizá una seña de $400 <br> 💈 Si no podés asistir avisá con anticipación, y tu seña quedará a favor en tu próximo corte 💈 <br> Gracias!</p>
+      <p>👉Para finalizar realizá <br> una seña de $400 <br> 💈 Si no podés asistir avisá con anticipación, y tu seña quedará a favor <br> en tu próximo corte 💈 Gracias.</p>
   
       <div id="acciones" style="display: flex; flex-direction: column;">
         
