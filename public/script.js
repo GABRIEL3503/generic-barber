@@ -289,7 +289,7 @@ reserveButton.addEventListener("click", function () {
   let mensajeCodificado = encodeURIComponent(mensaje);
 
   // Construir la URL completa
-  let urlWhatsApp = `https://api.whatsapp.com/send?phone=2996724372&text=${mensajeCodificado}`;
+  let urlWhatsApp = `https://api.whatsapp.com/send?phone=2996738175&text=${mensajeCodificado}`;
   // Muestra el SweetAlert
   Swal.fire({
     title: 'ESTÁS A UN PASO',
