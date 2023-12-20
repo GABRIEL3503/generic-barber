@@ -110,7 +110,7 @@ button.ocupado {
     margin-right: 30px;
   }
   .swal2-popup{
-height: 35vh!important;
+height: auto!important;
 width: 84vw!important;
 font-size: 30px;
   }
