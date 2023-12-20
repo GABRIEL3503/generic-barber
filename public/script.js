@@ -301,7 +301,7 @@ reserveButton.addEventListener("click", function () {
         <a href="${urlWhatsApp}" target="_blank" class="link-accion">COMPARTIR COMPROBANTE</a>
       </div>
     `,
-    imageUrl: './img/Logo APP Barbe generica.png', // Reemplaza con la ruta a tu imagen
+    imageUrl: 'ruta/a/tu/logo.png', // Reemplaza con la ruta a tu imagen
     imageWidth: 80, // Ajusta el ancho según tus necesidades
     imageHeight: 80, // Ajusta el alto según tus necesidades
     imageAlt: 'Un logo personalizado', // Texto alternativo para la imagen
@@ -310,6 +310,7 @@ reserveButton.addEventListener("click", function () {
     cancelButtonText: 'Cerrar',
   });
   
+});
 
 // Copiar CBU o Alias al portapapeles
 document.addEventListener('click', function(event) {
