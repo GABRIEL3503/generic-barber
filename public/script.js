@@ -275,7 +275,7 @@ document.addEventListener("DOMContentLoaded", function () {
    // Asignar la URL al evento 'click' del botón
    var cbu = "0000003100035584071991";
    var aliasCBU = "alemonkeys";
-   var phoneNumber = "+5492995328099";
+   var phoneNumber = "+5492996738175"; 
 reserveButton.addEventListener("click", function () {
   // Capturar la fecha y la hora del turno actual
   let fecha = diaFormateado;
@@ -292,7 +292,7 @@ reserveButton.addEventListener("click", function () {
   let urlWhatsApp = `https://api.whatsapp.com/send?phone=2996724372&text=${mensajeCodificado}`;
   // Muestra el SweetAlert
   Swal.fire({
-    title: 'ESTAS A UN PASO',
+    title: 'ESTÁS A UN PASO',
     html:`
     <p>👉Para reservar realizá una seña de $400 <br> 💈 Si no podés asistir avisá con anticipación, y tu seña quedará a favor en tu próximo corte 💈 <br> Gracias!</p>
   
