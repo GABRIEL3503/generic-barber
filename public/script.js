@@ -165,6 +165,10 @@ document.addEventListener("DOMContentLoaded", function () {
           .then(cliente => {
             if (cliente && cliente.nombre) {
               inputCliente.value = cliente.nombre; // Asignar nombre del cliente al campo de texto
+              botonGuardar.innerHTML = '-'; // Cambiar el botón a signo menos
+
+            } else {
+              botonGuardar.innerHTML = '+'; // Si no hay cliente, asegúrate de que el botón sea '+'
             }
           })
           .catch(error => console.error('Error:', error));
