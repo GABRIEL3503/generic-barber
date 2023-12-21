@@ -185,7 +185,7 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log("ID del turno:", turnoId);
 
             // Obtener la información del cliente desde el backend
-            fetch(`https://barber-app-wt1u.onrender.com/clientes/${turnoId}`)
+            fetch(`https://barber-app-wt1u.onrender.com/api/clientes/${turnoId}`)
               .then(response => {
                 console.log(response.headers.get('Content-Type'));
                 if (response.status === 200 && response.headers.get('Content-Type').includes('application/json')) {
