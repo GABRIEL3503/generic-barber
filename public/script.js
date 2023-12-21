@@ -242,7 +242,7 @@ document.addEventListener("DOMContentLoaded", function () {
                       const nombre = document.getElementById('swal-input1').value;
                       const telefono = document.getElementById('swal-input2').value;
                       const email = document.getElementById('swal-input3').value;
-                      fetch(`-app-wt1u.onrender.com/api/clientes`, {
+                      fetch(`https://barber-app-wt1u.onrender.com/api/clientes`, {
                         method: 'POST',
                         headers: {
                           'Content-Type': 'application/json',
