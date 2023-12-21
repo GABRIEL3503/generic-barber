@@ -203,27 +203,42 @@ document.addEventListener("DOMContentLoaded", function () {
           celdaBotones.appendChild(botonGuardar);
 
 
-          botonGuardar.addEventListener('click', function () {
+          botonGuardar.addEventListener('click', function() {
             const nombre = inputCliente.value;
             const turnoId = statusButton.getAttribute("data-id");
-
-            // Lógica para enviar la información al servidor
-            fetch(`https://barber-app-wt1u.onrender.com/api/clientes`, {
-              method: 'POST', // O 'PUT', según tu implementación
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({ nombre, turnoId }), // Enviar solo el nombre y el ID del turno
-            })
+          
+            if (botonGuardar.innerHTML === '+') {
+              fetch(`https://barber-app-wt1u.onrender.com/api/clientes`, {
+                method: 'POST', // o 'PUT'
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ nombre, turnoId }),
+              })
               .then(response => response.json())
               .then(data => {
-                console.log('Cliente insertado:', data);
-                // Aquí puedes añadir cualquier lógica adicional tras la inserción exitosa
+                console.log('Cliente guardado:', data);
+                botonGuardar.innerHTML = '-'; // Cambiar a signo menos
               })
-              .catch((error) => {
-                console.error('Error:', error);
-              });
+              .catch(error => console.error('Error:', error));
+            }
+            else {
+              fetch(`https://barber-app-wt1u.onrender.com/api/clientes/${turnoId}`, {
+                method: 'DELETE',
+                headers: {
+                  'Content-Type': 'application/json',
+                }
+              })
+              .then(response => response.json())
+              .then(data => {
+                console.log('Cliente eliminado:', data);
+                botonGuardar.innerHTML = '+'; // Cambiar a signo más
+              })
+              .catch(error => console.error('Error:', error));
+            }
+            
           });
+          
 
 
 
