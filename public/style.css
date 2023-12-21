@@ -86,9 +86,12 @@ button.ocupado {
     }
 
     td{
+      display: flex;
       font-size: 56px!important;
       color: white;
       font-weight: 400;
+      align-content: flex-start;
+      align-items: stretch;
     }
     button {
       font-size: 37px;
@@ -296,4 +299,10 @@ font-size: 32px;
 #back{
 background-color: transparent;
 display: flex;
+}
+
+
+.tu-clase-input{
+  max-width: 30%;
+  font-size: 32px;
 }
