@@ -1,3 +1,35 @@
+  // Función para actualizar la UI, si es necesario
+  // Función para actualizar la UI según el estado de autenticación
+  function updateUI() {
+    const isAuthenticated = checkAuthentication();
+    const clientButtons = document.querySelectorAll('.client-button');
+    const statusButtons = document.querySelectorAll('.libre');
+    const staButtons = document.querySelectorAll('.ocupado');
+    const inputsCliente = document.querySelectorAll('.tu-clase-input');
+    const botonesGuardar = document.querySelectorAll('.tu-clase-boton');
+    const reserveButton = document.getElementById('reserveButton');
+
+
+    if (isAuthenticated) {
+      clientButtons.forEach(button => button.style.display = "inline-block");
+      statusButtons.forEach(button => button.style.pointerEvents = "all");
+      staButtons.forEach(button => button.style.pointerEvents = "all");
+      inputsCliente.forEach(input => input.style.display = "block");
+      botonesGuardar.forEach(button => button.style.display = "block");
+      reserveButton.forEach(button => button.style.display = "none"); // Ocultar botones Reservar
+
+
+    } else {
+      clientButtons.forEach(button => button.style.display = "none");
+      statusButtons.forEach(button => button.classList.add("disabled"));
+      staButtons.forEach(button => button.style.pointerEvents = "disabled");
+      inputsCliente.forEach(input => input.style.display = "none");
+    botonesGuardar.forEach(button => button.style.display = "none");
+    reserveButton.forEach(button => button.style.display = "block"); // Mostrar botones Reservar
+
+    }
+  }
+
 document.addEventListener('DOMContentLoaded', function () {
   // Botón de login
   const loginButton = document.getElementById("login-button");
@@ -43,37 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
     return localStorage.getItem("authenticated") === "true";
   }
 
-  // Función para actualizar la UI, si es necesario
-  // Función para actualizar la UI según el estado de autenticación
-  function updateUI() {
-    const isAuthenticated = checkAuthentication();
-    const clientButtons = document.querySelectorAll('.client-button');
-    const statusButtons = document.querySelectorAll('.libre');
-    const staButtons = document.querySelectorAll('.ocupado');
-    const inputsCliente = document.querySelectorAll('.tu-clase-input');
-    const botonesGuardar = document.querySelectorAll('.tu-clase-boton');
-    const reserveButton = document.getElementById('reserveButton');
 
-
-    if (isAuthenticated) {
-      clientButtons.forEach(button => button.style.display = "inline-block");
-      statusButtons.forEach(button => button.style.pointerEvents = "all");
-      staButtons.forEach(button => button.style.pointerEvents = "all");
-      inputsCliente.forEach(input => input.style.display = "block");
-      botonesGuardar.forEach(button => button.style.display = "block");
-      reserveButton.forEach(button => button.style.display = "none"); // Ocultar botones Reservar
-
-
-    } else {
-      clientButtons.forEach(button => button.style.display = "none");
-      statusButtons.forEach(button => button.classList.add("disabled"));
-      staButtons.forEach(button => button.style.pointerEvents = "disabled");
-      inputsCliente.forEach(input => input.style.display = "none");
-    botonesGuardar.forEach(button => button.style.display = "none");
-    reserveButton.forEach(button => button.style.display = "block"); // Mostrar botones Reservar
-
-    }
-  }
 
 });
 
