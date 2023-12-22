@@ -70,15 +70,15 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  // Tu función para verificar si el usuario está autenticado
-  function checkAuthentication() {
-    return localStorage.getItem("authenticated") === "true";
-  }
-
 
 
 });
 
+
+  // Tu función para verificar si el usuario está autenticado
+  function checkAuthentication() {
+    return localStorage.getItem("authenticated") === "true";
+  }
 
 
 // cambia estado del boton
