@@ -207,7 +207,7 @@ document.addEventListener("DOMContentLoaded", function () {
           inputCliente.setAttribute('type', 'text');
           inputCliente.setAttribute('placeholder', 'Nombre o Teléfono');
           inputCliente.classList.add('tu-clase-input'); // Asegúrate de usar las clases adecuadas
-          inputCliente.id = 'nombreCliente';
+        
 
           // Crear botón para guardar la información del cliente
           const botonGuardar = document.createElement('button');
