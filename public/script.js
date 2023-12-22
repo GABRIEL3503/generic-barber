@@ -2,9 +2,12 @@
   function checkAuthentication() {
     return localStorage.getItem("authenticated") === "true";
   }
-
-
-  // Función para actualizar la UI según el estado de autenticación
+  // Escuchar el evento de clic en el botón de inicio de sesión
+document.getElementById("login-button").addEventListener("click", function () {
+  const password = document.getElementById("password").value;
+  authenticate(password);
+});
+// Función para actualizar la UI según el estado de autenticación
   function updateUI() {
     const isAuthenticated = checkAuthentication();
     const clientButtons = document.querySelectorAll('.client-button');
@@ -74,12 +77,8 @@ document.addEventListener('DOMContentLoaded', function () {
       return false;
     }
   }
-
-
-
 });
   
-
 
 // cambia estado del boton
 document.addEventListener("DOMContentLoaded", function () {
@@ -110,8 +109,6 @@ document.addEventListener("DOMContentLoaded", function () {
         console.error('Error:', error);
       });
   }
-
-  //   solicitud al backend para obtener todos los turnos y luego los mostraremos en la página.
 
 
   fetch('https://barber-app-wt1u.onrender.com/api/turnos')
@@ -254,16 +251,12 @@ document.addEventListener("DOMContentLoaded", function () {
               .catch(error => console.error('Error:', error));
             }
             
-          });
-          
+          });      
 
           const reserveButton = document.createElement('button');
           reserveButton.textContent = 'Reservar';
           reserveButton.classList.add('reserve-button'); // Agregar la clase en lugar del ID
           
-          
-
-          // Asignar la URL al evento 'click' del botón
           // Asignar la URL al evento 'click' del botón
           var cbu = "0000003100035584071991";
           var aliasCBU = "alemonkeys";
@@ -320,13 +313,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
           });
 
-
-
-
-
-
-
-
           // Aquí podrías añadir un evento para realizar la reserva
           celdaBotones.appendChild(reserveButton);
 
@@ -345,24 +331,9 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch(error => console.error('Error:', error));
 });
-// updateUI();
 
 
 
-
-
-
-
-
-// Escuchar el evento de clic en el botón de inicio de sesión
-document.getElementById("login-button").addEventListener("click", function () {
-  const password = document.getElementById("password").value;
-  authenticate(password);
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-  updateUI();
-});
-
-
-
+// document.addEventListener("DOMContentLoaded", function() {
+//   updateUI();
+// });
