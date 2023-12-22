@@ -38,48 +38,47 @@ document.getElementById("login-button").addEventListener("click", function () {
     }
   }
 
-document.addEventListener('DOMContentLoaded', function () {
-  // Botón de login
-  const loginButton = document.getElementById("login-button");
-
-  // Agregar evento de clic al botón de login
-  loginButton.addEventListener("click", function () {
-    // Muestra el modal de SweetAlert para ingresar la contraseña
-    Swal.fire({
-      title: 'Ingrese su contraseña',
-      input: 'password',
-      inputPlaceholder: 'Contraseña',
-      inputAttributes: {
-        autocapitalize: 'off'
-      },
-      showCancelButton: true,
-      confirmButtonText: 'Login',
-      showLoaderOnConfirm: true,
-      preConfirm: (password) => {
-        return authenticate(password);  // Llama a tu función authenticate
-      }
-    }).then((result) => {
-      if (result.isConfirmed) {
-        // Aquí puedes añadir lo que quieras hacer una vez que el usuario esté autenticado
-        updateUI();
-      }
-    });
-  });
-
-  // Tu función para autenticar al usuario
-  function authenticate(password) {
-    const correctPassword = "admin";
-    if (password === correctPassword) {
-      localStorage.setItem("authenticated", "true");
-      return true;
-    } else {
-      Swal.showValidationMessage("Contraseña incorrecta");
-      return false;
-    }
-  }
-});
+  document.addEventListener('DOMContentLoaded', function () {
+    // Botón de login
+    const loginButton = document.getElementById("login-button");
   
-
+    // Agregar evento de clic al botón de login
+    loginButton.addEventListener("click", function () {
+      // Muestra el modal de SweetAlert para ingresar la contraseña
+      Swal.fire({
+        title: 'Ingrese su contraseña',
+        input: 'password',
+        inputPlaceholder: 'Contraseña',
+        inputAttributes: {
+          autocapitalize: 'off'
+        },
+        showCancelButton: true,
+        confirmButtonText: 'Login',
+        showLoaderOnConfirm: true,
+        preConfirm: (password) => {
+          return authenticate(password);  // Llama a tu función authenticate
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Aquí puedes añadir lo que quieras hacer una vez que el usuario esté autenticado
+          updateUI();
+        }
+      });
+    });
+  
+    // Tu función para autenticar al usuario
+    function authenticate(password) {
+      const correctPassword = "admin";
+      if (password === correctPassword) {
+        localStorage.setItem("authenticated", "true");
+        return true;
+      } else {
+        Swal.showValidationMessage("Contraseña incorrecta");
+        return false;
+      }
+    }
+  });
+  
 // cambia estado del boton
 document.addEventListener("DOMContentLoaded", function () {
   // Función para cambiar el estado del botón y actualizar en la base de datos
