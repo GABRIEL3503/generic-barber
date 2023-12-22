@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
     button.style.backgroundColor = newStatus === "libre" ? "green" : "red";
 
     // Actualizar en la base de datos
-    fetch(`https://barber-app-wt1u.onrender.com/${turnoId}`, {
+    fetch(`https://barber-app-wt1u.onrender.com/api/turnos/${turnoId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
