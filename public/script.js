@@ -3,7 +3,10 @@
     return localStorage.getItem("authenticated") === "true";
   }
   // Escuchar el evento de clic en el botón de inicio de sesión
-
+document.getElementById("login-button").addEventListener("click", function () {
+  const password = document.getElementById("password").value;
+  authenticate(password);
+});
 // Función para actualizar la UI según el estado de autenticación
   function updateUI() {
     const isAuthenticated = checkAuthentication();
@@ -65,7 +68,7 @@
   
     // Tu función para autenticar al usuario
     function authenticate(password) {
-      const correctPassword = "admin23";
+      const correctPassword = "admin";
       if (password === correctPassword) {
         localStorage.setItem("authenticated", "true");
         return true;
