@@ -2,11 +2,7 @@
   function checkAuthentication() {
     return localStorage.getItem("authenticated") === "true";
   }
-  // Escuchar el evento de clic en el botón de inicio de sesión
-document.getElementById("login-button").addEventListener("click", function () {
-  const password = document.getElementById("password").value;
-  authenticate(password);
-});
+
 // Función para actualizar la UI según el estado de autenticación
   function updateUI() {
     const isAuthenticated = checkAuthentication();
@@ -42,8 +38,7 @@ document.getElementById("login-button").addEventListener("click", function () {
     // Botón de login
     const loginButton = document.getElementById("login-button");
   
-    // Agregar evento de clic al botón de login
-    loginButton.addEventListener("click", function () {
+    document.getElementById("login-button").addEventListener("click", function () {
       // Muestra el modal de SweetAlert para ingresar la contraseña
       Swal.fire({
         title: 'Ingrese su contraseña',
@@ -65,6 +60,7 @@ document.getElementById("login-button").addEventListener("click", function () {
         }
       });
     });
+    
   
     // Tu función para autenticar al usuario
     function authenticate(password) {
