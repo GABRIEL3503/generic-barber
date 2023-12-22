@@ -1,4 +1,9 @@
-  // Función para actualizar la UI, si es necesario
+  // Tu función para verificar si el usuario está autenticado
+  function checkAuthentication() {
+    return localStorage.getItem("authenticated") === "true";
+  }
+
+
   // Función para actualizar la UI según el estado de autenticación
   function updateUI() {
     const isAuthenticated = checkAuthentication();
@@ -7,7 +12,7 @@
     const staButtons = document.querySelectorAll('.ocupado');
     const inputsCliente = document.querySelectorAll('.tu-clase-input');
     const botonesGuardar = document.querySelectorAll('.tu-clase-boton');
-    const reserveButton = document.getElementById('reserveButton');
+    const reserveButtons = document.querySelectorAll('.reserve-button');
 
 
     if (isAuthenticated) {
@@ -16,7 +21,7 @@
       staButtons.forEach(button => button.style.pointerEvents = "all");
       inputsCliente.forEach(input => input.style.display = "block");
       botonesGuardar.forEach(button => button.style.display = "block");
-      reserveButton.forEach(button => button.style.display = "none"); // Ocultar botones Reservar
+      reserveButtons.forEach(button => button.style.display = "none"); // Ocultar todos los botones Reservar
 
 
     } else {
@@ -25,7 +30,7 @@
       staButtons.forEach(button => button.style.pointerEvents = "disabled");
       inputsCliente.forEach(input => input.style.display = "none");
     botonesGuardar.forEach(button => button.style.display = "none");
-    reserveButton.forEach(button => button.style.display = "block"); // Mostrar botones Reservar
+    reserveButtons.forEach(button => button.style.display = "block"); // Mostrar todos los botones Reservar
 
     }
   }
@@ -73,12 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 });
-
-
-  // Tu función para verificar si el usuario está autenticado
-  function checkAuthentication() {
-    return localStorage.getItem("authenticated") === "true";
-  }
+  
 
 
 // cambia estado del boton
@@ -257,10 +257,10 @@ document.addEventListener("DOMContentLoaded", function () {
           });
           
 
-
           const reserveButton = document.createElement('button');
           reserveButton.textContent = 'Reservar';
-          reserveButton.id = 'reserveButton'; // Asignar un ID único
+          reserveButton.classList.add('reserve-button'); // Agregar la clase en lugar del ID
+          
           
 
           // Asignar la URL al evento 'click' del botón
@@ -332,6 +332,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
           fila.appendChild(celdaBotones);
           tabla.appendChild(fila);
+        
         });
 
         diaDiv.appendChild(tabla);
