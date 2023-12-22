@@ -73,6 +73,7 @@
         return false;
       }
     }
+    updateUI();
   });
   
 // cambia estado del boton
@@ -329,6 +330,3 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-// document.addEventListener("DOMContentLoaded", function() {
-//   updateUI();
-// });
