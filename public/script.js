@@ -65,7 +65,7 @@
   
     // Tu función para autenticar al usuario
     function authenticate(password) {
-      const correctPassword = "admin";
+      const correctPassword = "admin23";
       if (password === correctPassword) {
         localStorage.setItem("authenticated", "true");
         return true;
