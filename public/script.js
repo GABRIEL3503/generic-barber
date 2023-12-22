@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const staButtons = document.querySelectorAll('.ocupado');
     const inputsCliente = document.querySelectorAll('.tu-clase-input');
     const botonesGuardar = document.querySelectorAll('.tu-clase-boton');
-    const reserveButtons = document.querySelectorAll('button[textContent="Reservar"]');
+    const reserveButton = document.getElementById('reserveButton');
 
 
     if (isAuthenticated) {
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
       staButtons.forEach(button => button.style.pointerEvents = "all");
       inputsCliente.forEach(input => input.style.display = "block");
       botonesGuardar.forEach(button => button.style.display = "block");
-      reserveButtons.forEach(button => button.style.display = "none"); // Ocultar botones Reservar
+      reserveButton.forEach(button => button.style.display = "none"); // Ocultar botones Reservar
 
 
     } else {
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
       staButtons.forEach(button => button.style.pointerEvents = "disabled");
       inputsCliente.forEach(input => input.style.display = "none");
     botonesGuardar.forEach(button => button.style.display = "none");
-    reserveButtons.forEach(button => button.style.display = "block"); // Mostrar botones Reservar
+    reserveButton.forEach(button => button.style.display = "block"); // Mostrar botones Reservar
 
     }
   }
@@ -256,9 +256,10 @@ document.addEventListener("DOMContentLoaded", function () {
           
 
 
-
           const reserveButton = document.createElement('button');
           reserveButton.textContent = 'Reservar';
+          reserveButton.id = 'reserveButton'; // Asignar un ID único
+          
 
           // Asignar la URL al evento 'click' del botón
           // Asignar la URL al evento 'click' del botón
@@ -336,6 +337,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
 
+      updateUI();
 
     })
     .catch(error => console.error('Error:', error));
