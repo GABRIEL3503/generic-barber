@@ -1,117 +1,138 @@
-  // Tu función para verificar si el usuario está autenticado
-  function checkAuthentication() {
-    return localStorage.getItem("authenticated") === "true";
-  }
-
+// Tu función para verificar si el usuario está autenticado
+function checkAuthentication() {
+  const isAuthenticated = localStorage.getItem("authenticated") === "true"; // Cambiado para reflejar un estado autenticado como true
+  console.log("Is Authenticated:", isAuthenticated); // Agregado console.log para depuración
+  return isAuthenticated;
+}
 // Función para actualizar la UI según el estado de autenticación
-  function updateUI() {
-    const isAuthenticated = checkAuthentication();
-    const clientButtons = document.querySelectorAll('.client-button');
-    const statusButtons = document.querySelectorAll('.libre');
-    const staButtons = document.querySelectorAll('.ocupado');
-    const inputsCliente = document.querySelectorAll('.tu-clase-input');
-    const botonesGuardar = document.querySelectorAll('.tu-clase-boton');
-    const reserveButtons = document.querySelectorAll('.reserve-button');
+function updateUI() {
+  console.log("Actualizando UI..."); // Al inicio de la función
 
+  const isAuthenticated = checkAuthentication();
+  const clientButtons = document.querySelectorAll('.client-button');
+  const statusButtons = document.querySelectorAll('.libre');
+  const staButtons = document.querySelectorAll('.ocupado');
+  const inputsCliente = document.querySelectorAll('.tu-clase-input');
+  const botonesGuardar = document.querySelectorAll('.tu-clase-boton');
+  const reserveButtons = document.querySelectorAll('.reserve-button');
 
-    if (isAuthenticated) {
-      clientButtons.forEach(button => button.style.display = "inline-block");
-      statusButtons.forEach(button => button.style.pointerEvents = "all");
-      staButtons.forEach(button => button.style.pointerEvents = "all");
-      inputsCliente.forEach(input => input.style.display = "block");
-      botonesGuardar.forEach(button => button.style.display = "block");
-      reserveButtons.forEach(button => button.style.display = "none"); // Ocultar todos los botones Reservar
-
-
-    } else {
-      clientButtons.forEach(button => button.style.display = "none");
-      statusButtons.forEach(button => button.classList.add("disabled"));
-      staButtons.forEach(button => button.style.pointerEvents = "disabled");
-      inputsCliente.forEach(input => input.style.display = "none");
-    botonesGuardar.forEach(button => button.style.display = "none");
-    reserveButtons.forEach(button => button.style.display = "block"); // Mostrar todos los botones Reservar
-
-    }
-  }
-
-  document.addEventListener('DOMContentLoaded', function () {
-    // Botón de login
-    const loginButton = document.getElementById("login-button");
-  
-    document.getElementById("login-button").addEventListener("click", function () {
-      // Muestra el modal de SweetAlert para ingresar la contraseña
-      Swal.fire({
-        title: 'Ingrese su contraseña',
-        input: 'password',
-        inputPlaceholder: 'Contraseña',
-        inputAttributes: {
-          autocapitalize: 'off'
-        },
-        showCancelButton: true,
-        confirmButtonText: 'Login',
-        showLoaderOnConfirm: true,
-        preConfirm: (password) => {
-          return authenticate(password);  // Llama a tu función authenticate
-        }
-      }).then((result) => {
-        if (result.isConfirmed) {
-          // Aquí puedes añadir lo que quieras hacer una vez que el usuario esté autenticado
-          updateUI();
-        }
-      });
+  if (isAuthenticated) {
+    // Si el usuario está autenticado, activar los botones
+    clientButtons.forEach(button => button.style.display = "inline-block");
+    statusButtons.forEach(button => {
+      button.style.pointerEvents = "all";
+      button.classList.remove("disabled"); // Asegúrate de remover la clase disabled
     });
-    
-  
-    // Tu función para autenticar al usuario
-    function authenticate(password) {
-      const correctPassword = "admin";
-      if (password === correctPassword) {
-        localStorage.setItem("authenticated", "true");
-        return true;
-      } else {
-        Swal.showValidationMessage("Contraseña incorrecta");
-        return false;
-      }
-    }
-    updateUI();
-  });
-  
-// cambia estado del boton
-document.addEventListener("DOMContentLoaded", function () {
-  // Función para cambiar el estado del botón y actualizar en la base de datos
-  function toggleStatus(button) {
-    const currentStatus = button.getAttribute("data-status");
-    const newStatus = currentStatus === "libre" ? "ocupado" : "libre";
-    const turnoId = button.getAttribute("data-id");
-
-    // Actualizar UI
-    button.setAttribute("data-status", newStatus);
-    button.textContent = newStatus.charAt(0).toUpperCase() + newStatus.slice(1);
-    button.style.backgroundColor = newStatus === "libre" ? "green" : "red";
-
-    // Actualizar en la base de datos
-    fetch(`https://barber-app-wt1u.onrender.com/api/turnos/${turnoId}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ estado: newStatus }),
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Estado actualizado:', data);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+    staButtons.forEach(button => button.style.pointerEvents = "all");
+    inputsCliente.forEach(input => input.style.display = "block");
+    botonesGuardar.forEach(button => button.style.display = "block");
+    reserveButtons.forEach(button => button.style.display = "none");
+  } else {
+    // Si el usuario no está autenticado, desactivar los botones
+    clientButtons.forEach(button => button.style.display = "none");
+    statusButtons.forEach(button => {
+      button.style.pointerEvents = "none"; // Cambiar a "none" para desactivar eventos del mouse
+      button.classList.add("disabled"); // Asegúrate de agregar la clase disabled
+    });
+    staButtons.forEach(button => button.style.pointerEvents = "none"); // Cambiar a "none" aquí también
+    inputsCliente.forEach(input => input.style.display = "none");
+    botonesGuardar.forEach(button => button.style.display = "none");
+    reserveButtons.forEach(button => button.style.display = "block");
   }
+  console.log("Final de updateUI");
+
+}
+// Tu función para autenticar al usuario
+function authenticate(password) {
+  console.log("Autenticando..."); // Al inicio de la función
+
+  const correctPassword = "admin";
+  if (password === correctPassword) {
+    localStorage.setItem("authenticated", "true");
+    return true;
+  } else {
+    Swal.showValidationMessage("Contraseña incorrecta");
+    return false;
+  }
+}
 
 
-  fetch('https://barber-app-wt1u.onrender.com/api/turnos')
+function toggleStatus(button) {
+  console.log("Cambiando estado del turno:", button.getAttribute("data-id")); // Mostrar ID del turno
 
+  const currentStatus = button.getAttribute("data-status");
+  const newStatus = currentStatus === "libre" ? "ocupado" : "libre";
+  const turnoId = button.getAttribute("data-id");
+  // Actualizar UI
+  button.setAttribute("data-status", newStatus);
+  button.textContent = newStatus.charAt(0).toUpperCase() + newStatus.slice(1);
+  button.style.backgroundColor = newStatus === "libre" ? "green" : "red";
+
+  // Actualizar en la base de datos
+  fetch(`http://localhost:3000/api/turnos/${turnoId}`, {
+    // fetch(`https://barber-app-wt1u.onrender.com/api/turnos/${turnoId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ estado: newStatus }),
+  })
     .then(response => response.json())
     .then(data => {
+      console.log('Estado actualizado:', data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+
+  console.log("Cambiando estado del turno:", button.getAttribute("data-id"));
+
+}
+
+
+document.getElementById("login-button").addEventListener("click", function () {
+  // Muestra el modal de SweetAlert para ingresar la contraseña
+  console.log("Intentando iniciar sesión..."); // Antes de mostrar SweetAlert
+
+  Swal.fire({
+    title: 'Ingrese su contraseña',
+    input: 'password',
+    inputPlaceholder: 'Contraseña',
+    inputAttributes: {
+      autocapitalize: 'off'
+    },
+    showCancelButton: true,
+    confirmButtonText: 'Login',
+    showLoaderOnConfirm: true,
+    preConfirm: (password) => {
+      return authenticate(password);  // Llama a tu función authenticate
+    }
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // Aquí puedes añadir lo que quieras hacer una vez que el usuario esté autenticado
+      updateUI();
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  console.log("Página cargada. Estado inicial...");
+  localStorage.removeItem("authenticated");
+  // Función para cambiar el estado del botón y actualizar en la base de datos
+
+  fetch('http://localhost:3000/api/turnos')
+    // fetch('https://barber-app-wt1u.onrender.com/api/turnos')
+
+    .then(response => {
+      console.log("Respuesta recibida de la API de turnos");
+      return response.json();  // Convierte la respuesta en JSON
+    })
+
+    .then(data => {
+      console.log("Cargando estados de turnos...", data); // Mostrar los datos recuperados
+
       data.forEach(turno => {
+
         if (turno.hora.length === 1) {
           turno.hora = '0' + turno.hora;
         }
@@ -151,7 +172,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Formatear la fecha para que solo muestre el día y la fecha
         const diaFormateado = `${dia} ${fecha.getDate()}`;
-
         const titulo = document.createElement('h2');
         titulo.textContent = diaFormateado;
         diaDiv.appendChild(titulo);
@@ -164,20 +184,25 @@ document.addEventListener("DOMContentLoaded", function () {
           const celdaHora = document.createElement('td');
           celdaHora.textContent = turno.hora;
           fila.appendChild(celdaHora);
+
           const statusButton = document.createElement('button');
           const celdaBotones = document.createElement('td');
-          fetch(`https://barber-app-wt1u.onrender.com/api/clientes/${turno.id}`)
-          .then(response => response.json())
-          .then(cliente => {
-            if (cliente && cliente.nombre) {
-              inputCliente.value = cliente.nombre; // Asignar nombre del cliente al campo de texto
-              botonGuardar.innerHTML = '-'; // Cambiar el botón a signo menos
 
-            } else {
-              botonGuardar.innerHTML = '+'; // Si no hay cliente, asegúrate de que el botón sea '+'
-            }
-          })
-          .catch(error => console.error('Error:', error));
+          fetch(`
+          http://localhost:3000/api/clientes/${turno.id}`)
+            // fetch(`https://barber-app-wt1u.onrender.com/api/clientes/${turno.id}`)
+            .then(response => response.json())
+            .then(cliente => {
+              if (cliente && cliente.nombre) {
+                inputCliente.value = cliente.nombre;
+                botonGuardar.classList.remove('cliente-no-guardado');
+                botonGuardar.classList.add('cliente-guardado');
+              } else {
+                botonGuardar.classList.remove('cliente-guardado');
+                botonGuardar.classList.add('cliente-no-guardado');
+              }
+            })
+            .catch(error => console.error('Error:', error));
 
           statusButton.className = turno.estado;
           statusButton.textContent = turno.estado.charAt(0).toUpperCase() + turno.estado.slice(1);
@@ -193,19 +218,16 @@ document.addEventListener("DOMContentLoaded", function () {
             toggleStatus(this);
           });
 
-
-
           // Crear campo de texto para nombre del cliente
           const inputCliente = document.createElement('input');
           inputCliente.setAttribute('type', 'text');
           inputCliente.setAttribute('placeholder', 'Nombre o Teléfono');
           inputCliente.classList.add('tu-clase-input'); // Asegúrate de usar las clases adecuadas
-        
+
 
           // Crear botón para guardar la información del cliente
           const botonGuardar = document.createElement('button');
-          botonGuardar.innerHTML = '+'; // Puedes cambiar esto por un icono si prefieres
-          botonGuardar.classList.add('tu-clase-boton'); // Usa las clases adecuadas
+          botonGuardar.classList.add('tu-clase-boton', 'boton-cliente-no-guardado');
           botonGuardar.id = 'guardarCliente';
 
           // Agregar el campo de texto y el botón al DOM
@@ -213,50 +235,59 @@ document.addEventListener("DOMContentLoaded", function () {
           celdaBotones.appendChild(botonGuardar);
 
 
-          botonGuardar.addEventListener('click', function() {
+
+          botonGuardar.addEventListener('click', function () {
             const nombre = inputCliente.value;
             const turnoId = statusButton.getAttribute("data-id");
-          
-            if (botonGuardar.innerHTML === '+') {
-              fetch(`https://barber-app-wt1u.onrender.com/api/clientes`, {
-                method: 'POST', // o 'PUT'
+            const estaGuardado = botonGuardar.classList.contains('boton-cliente-guardado');
+
+            // Alternar entre guardar y eliminar cliente
+            if (!estaGuardado) {
+              // Guardar cliente
+              fetch(`http://localhost:3000/api/clientes`, {
+                method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ nombre, turnoId }),
               })
-              .then(response => response.json())
-              .then(data => {
-                console.log('Cliente guardado:', data);
-                botonGuardar.innerHTML = '-'; // Cambiar a signo menos
-              })
-              .catch(error => console.error('Error:', error));
-            }
-            else {
-              fetch(`https://barber-app-wt1u.onrender.com/api/clientes/${turnoId}`, {
+                .then(response => response.json())
+                .then(data => {
+                  console.log('Cliente guardado:', data);
+                  botonGuardar.classList.remove('boton-cliente-no-guardado');
+                  botonGuardar.classList.add('boton-cliente-guardado');
+                  inputCliente.disabled = true; // Deshabilitar el campo de texto
+                })
+                .catch(error => console.error('Error:', error));
+            } else {
+              // Eliminar cliente
+              fetch(`http://localhost:3000/api/clientes/${turnoId}`, {
                 method: 'DELETE',
                 headers: {
                   'Content-Type': 'application/json',
                 }
               })
-              .then(response => response.json())
-              .then(data => {
-                console.log('Cliente eliminado:', data);
-                botonGuardar.innerHTML = '+'; // Cambiar a signo más
-              })
-              .catch(error => console.error('Error:', error));
+                .then(response => response.json())
+                .then(data => {
+                  console.log('Cliente eliminado:', data);
+                  botonGuardar.classList.remove('boton-cliente-guardado');
+                  botonGuardar.classList.add('boton-cliente-no-guardado');
+                  inputCliente.disabled = false; // Habilitar el campo de texto para edición
+                })
+                .catch(error => console.error('Error:', error));
             }
-            
-          });      
+          });
+
+
 
           const reserveButton = document.createElement('button');
           reserveButton.textContent = 'Reservar';
           reserveButton.classList.add('reserve-button'); // Agregar la clase en lugar del ID
-          
+
           // Asignar la URL al evento 'click' del botón
           var cbu = "0000003100035584071991";
           var aliasCBU = "alemonkeys";
-          var phoneNumber = "+5492996738175";
+          var phoneNumber = "+5492995328099";
           reserveButton.addEventListener("click", function () {
             // Capturar la fecha y la hora del turno actual
             let fecha = diaFormateado;
@@ -270,7 +301,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let mensajeCodificado = encodeURIComponent(mensaje);
 
             // Construir la URL completa
-            let urlWhatsApp = `https://api.whatsapp.com/send?phone=2996738175&text=${mensajeCodificado}`;
+            let urlWhatsApp = `https://api.whatsapp.com/send?phone=2996724372&text=${mensajeCodificado}`;
             // Muestra el SweetAlert
             Swal.fire({
               html: `
@@ -314,7 +345,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
           fila.appendChild(celdaBotones);
           tabla.appendChild(fila);
-        
+
         });
 
         diaDiv.appendChild(tabla);
@@ -323,10 +354,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
       updateUI();
+      console.log("Turnos actualizados en la UI");
 
     })
     .catch(error => console.error('Error:', error));
 });
-
-
-

@@ -306,3 +306,38 @@ display: flex;
   max-width: 70%;
   font-size: 32px;
 }
+
+.tu-clase-boton{
+  font-size: 23px;
+  width: 50px; /* establece el ancho del botón */
+  height: 50px; /* establece la altura del botón */
+  background-color: #5e6873; /* color de fondo del botón */
+  border-radius: 50%; /* hace que las esquinas sean completamente redondas */
+  border: none; /* quita el borde predeterminado */
+  color: white; /* color del texto */
+  text-align: center;
+  align-items: center; /* centra verticalmente el contenido con flexbox */
+  cursor: pointer; /* cambia el cursor a una mano cuando se pasa por encima */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* opcional: añade sombra para un efecto 3D */
+  font-size: 20px; /* tamaño del texto */
+  user-select: none; /* evita que el texto del botón sea seleccionable */
+
+}
+
+.tu-clase-boton:active {
+  background-color: #004080; /* color de fondo del botón al hacer clic */
+  box-shadow: 0 2px 4px rgba(34, 34, 34, 0.2); /* sombra más pequeña para efecto de presionado */
+}
+
+/* Define las clases para los botones de guardar/eliminar cliente */
+.boton-cliente-guardado {
+  /* Puedes añadir estilos para un círculo completo aquí */
+  background: url('./img/icono-circulo-completo.svg') no-repeat center center;
+  background-size: contain;
+}
+
+.boton-cliente-no-guardado {
+  /* Puedes añadir estilos para un círculo vacío aquí */
+  background: url('./img/icono-circulo-vacio.svg') no-repeat center center;
+  background-size: contain;
+}
