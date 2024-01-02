@@ -69,7 +69,7 @@ function toggleStatus(button) {
   button.style.backgroundColor = newStatus === "libre" ? "green" : "red";
 
   // Actualizar en la base de datos
-  fetch(`http://localhost:3000/api/turnos/${turnoId}`, {
+  fetch(`https://barber-app-wt1u.onrender.com/api/turnos/${turnoId}`, {
     // fetch(`https://barber-app-wt1u.onrender.com/api/turnos/${turnoId}`, {
     method: 'PUT',
     headers: {
@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function () {
   localStorage.removeItem("authenticated");
   // Función para cambiar el estado del botón y actualizar en la base de datos
 
-  fetch('http://localhost:3000/api/turnos')
+  fetch('https://barber-app-wt1u.onrender.com/api/turnos')
     // fetch('https://barber-app-wt1u.onrender.com/api/turnos')
 
     .then(response => {
@@ -189,7 +189,7 @@ document.addEventListener("DOMContentLoaded", function () {
           const celdaBotones = document.createElement('td');
 
           fetch(`
-          http://localhost:3000/api/clientes/${turno.id}`)
+          https://barber-app-wt1u.onrender.com/api/clientes/${turno.id}`)
             // fetch(`https://barber-app-wt1u.onrender.com/api/clientes/${turno.id}`)
             .then(response => response.json())
             .then(cliente => {
@@ -244,7 +244,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Alternar entre guardar y eliminar cliente
             if (!estaGuardado) {
               // Guardar cliente
-              fetch(`http://localhost:3000/api/clientes`, {
+              fetch(`https://barber-app-wt1u.onrender.com/api/clientes`, {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
@@ -261,7 +261,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 .catch(error => console.error('Error:', error));
             } else {
               // Eliminar cliente
-              fetch(`http://localhost:3000/api/clientes/${turnoId}`, {
+              fetch(`https://barber-app-wt1u.onrender.com/api/clientes/${turnoId}`, {
                 method: 'DELETE',
                 headers: {
                   'Content-Type': 'application/json',
