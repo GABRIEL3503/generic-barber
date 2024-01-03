@@ -114,6 +114,21 @@ document.getElementById("login-button").addEventListener("click", function () {
     }
   });
 });
+function comprobarEstadoCliente() {
+  fetch(`https://barber-app-wt1u.onrender.com/api/clientes/${turno.id}`)
+    .then(response => response.json())
+    .then(cliente => {
+      if (cliente && cliente.nombre) {
+        inputCliente.value = cliente.nombre; // Asignar nombre del cliente al campo de texto
+        botonGuardar.classList.add('boton-cliente-guardado');
+        inputCliente.disabled = true; // Deshabilitar el campo de texto
+      } else {
+        botonGuardar.classList.add('boton-cliente-no-guardado');
+        inputCliente.disabled = false; // Habilitar el campo de texto
+      }
+    })
+    .catch(error => console.error('Error:', error));
+}
 
 document.addEventListener("DOMContentLoaded",  comprobarEstadoCliente, function () {
   console.log("Página cargada. Estado inicial...");
@@ -277,22 +292,7 @@ document.addEventListener("DOMContentLoaded",  comprobarEstadoCliente, function 
                 .catch(error => console.error('Error:', error));
             }
           });
-          function comprobarEstadoCliente() {
-            fetch(`https://barber-app-wt1u.onrender.com/api/clientes/${turno.id}`)
-              .then(response => response.json())
-              .then(cliente => {
-                if (cliente && cliente.nombre) {
-                  inputCliente.value = cliente.nombre; // Asignar nombre del cliente al campo de texto
-                  botonGuardar.classList.add('boton-cliente-guardado');
-                  inputCliente.disabled = true; // Deshabilitar el campo de texto
-                } else {
-                  botonGuardar.classList.add('boton-cliente-no-guardado');
-                  inputCliente.disabled = false; // Habilitar el campo de texto
-                }
-              })
-              .catch(error => console.error('Error:', error));
-          }
-
+     
 
           const reserveButton = document.createElement('button');
           reserveButton.textContent = 'Reservar';
