@@ -114,23 +114,9 @@ document.getElementById("login-button").addEventListener("click", function () {
     }
   });
 });
-function comprobarEstadoCliente() {
-  fetch(`https://barber-app-wt1u.onrender.com/api/clientes/${turno.id}`)
-    .then(response => response.json())
-    .then(cliente => {
-      if (cliente && cliente.nombre) {
-        inputCliente.value = cliente.nombre; // Asignar nombre del cliente al campo de texto
-        botonGuardar.classList.add('boton-cliente-guardado');
-        inputCliente.disabled = true; // Deshabilitar el campo de texto
-      } else {
-        botonGuardar.classList.add('boton-cliente-no-guardado');
-        inputCliente.disabled = false; // Habilitar el campo de texto
-      }
-    })
-    .catch(error => console.error('Error:', error));
-}
 
-document.addEventListener("DOMContentLoaded",  comprobarEstadoCliente, function () {
+
+document.addEventListener("DOMContentLoaded",  function () {
   console.log("Página cargada. Estado inicial...");
   localStorage.removeItem("authenticated");
   // Función para cambiar el estado del botón y actualizar en la base de datos
@@ -249,7 +235,26 @@ document.addEventListener("DOMContentLoaded",  comprobarEstadoCliente, function 
           celdaBotones.appendChild(inputCliente);
           celdaBotones.appendChild(botonGuardar);
 
-
+          function comprobarEstadoCliente(turnoId, inputCliente, botonGuardar) {
+            fetch(`https://barber-app-wt1u.onrender.com/api/clientes/${turnoId}`)
+              .then(response => response.json())
+              .then(cliente => {
+                if (cliente && cliente.nombre) {
+                  inputCliente.value = cliente.nombre;
+                  botonGuardar.classList.remove('boton-cliente-no-guardado');
+                  botonGuardar.classList.add('boton-cliente-guardado');
+                  inputCliente.disabled = true;
+                } else {
+                  botonGuardar.classList.remove('boton-cliente-guardado');
+                  botonGuardar.classList.add('boton-cliente-no-guardado');
+                  inputCliente.disabled = false;
+                }
+              })
+              .catch(error => console.error('Error:', error));
+          }
+        
+          // Llamada a la función pasando el ID del turno y los elementos de entrada y botón
+          comprobarEstadoCliente(turno.id, inputCliente, botonGuardar);
 
           botonGuardar.addEventListener('click', function () {
             const nombre = inputCliente.value;
