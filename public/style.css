@@ -96,11 +96,18 @@ button.ocupado {
     button {
       font-size: 37px;
       border: none;
-      border-radius: 9px;
-      padding: 14px;
+      padding: 14px 28px;
       margin: 6px;
       font-weight: 700;
-      color: rgb(59, 59, 59);
+      clip-path: polygon(0% 0%, /* Punto superior izquierdo */ 100% 0%, /* Punto superior derecho */ 80% 50%, /* Punto de la derecha hacia abajo en la mitad */ 100% 100%, /* Punto inferior derecho */ 0% 100%);
+      transition: all 0.3s ease;
+      display: inline-block;
+      width: 150px;
+      height: 83px;
+      line-height: 50px;
+      text-align: center;
+      box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+      pointer-events: none;
   }
 
   table{
