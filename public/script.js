@@ -65,7 +65,7 @@ function toggleStatus(button) {
   const turnoId = button.getAttribute("data-id");
   // Actualizar UI
   button.setAttribute("data-status", newStatus);
-  button.textContent = newStatus.charAt(0).toUpperCase() + newStatus.slice(1);
+  // button.textContent = newStatus.charAt(0).toUpperCase() + newStatus.slice(1);
   button.style.backgroundColor = newStatus === "libre" ? "green" : "red";
 
   // Actualizar en la base de datos
@@ -116,7 +116,7 @@ document.getElementById("login-button").addEventListener("click", function () {
 });
 
 
-document.addEventListener("DOMContentLoaded",  function () {
+document.addEventListener("DOMContentLoaded", function () {
   console.log("Página cargada. Estado inicial...");
   localStorage.removeItem("authenticated");
   // Función para cambiar el estado del botón y actualizar en la base de datos
@@ -180,13 +180,17 @@ document.addEventListener("DOMContentLoaded",  function () {
         const tabla = document.createElement('table');
 
         turnosPorDia[dia].forEach(turno => {
-          const fila = document.createElement('tr');
+          // Crear elementos de fila y celda para la tabla
 
+          const fila = document.createElement('tr');
           const celdaHora = document.createElement('td');
           celdaHora.textContent = turno.hora;
           fila.appendChild(celdaHora);
-
+          // Crear botón de estado
           const statusButton = document.createElement('button');
+          // Añadir clases 'boton-estado' y la clase que corresponde al estado del turno
+          statusButton.classList.add('boton-estado', turno.estado);
+
           const celdaBotones = document.createElement('td');
 
           fetch(`
@@ -205,9 +209,11 @@ document.addEventListener("DOMContentLoaded",  function () {
             })
             .catch(error => console.error('Error:', error));
 
-          statusButton.className = turno.estado;
-          statusButton.textContent = turno.estado.charAt(0).toUpperCase() + turno.estado.slice(1);
-          statusButton.setAttribute("data-status", turno.estado); // Añadir el estado actual como un atributo data
+
+
+
+          // statusButton.textContent = turno.estado.charAt(0).toUpperCase() + turno.estado.slice(1);
+          statusButton.setAttribute("data-status", turno.estado);
           statusButton.setAttribute("data-id", turno.id); // Añadir el id del turno como un atributo data
 
           celdaBotones.appendChild(statusButton);
@@ -252,7 +258,7 @@ document.addEventListener("DOMContentLoaded",  function () {
               })
               .catch(error => console.error('Error:', error));
           }
-        
+
           // Llamada a la función pasando el ID del turno y los elementos de entrada y botón
           comprobarEstadoCliente(turno.id, inputCliente, botonGuardar);
 
@@ -297,15 +303,15 @@ document.addEventListener("DOMContentLoaded",  function () {
                 .catch(error => console.error('Error:', error));
             }
           });
-     
+
 
           const reserveButton = document.createElement('button');
           reserveButton.textContent = 'Reservar';
           reserveButton.classList.add('reserve-button'); // Agregar la clase en lugar del ID
 
           // Asignar la URL al evento 'click' del botón
-          var cbu = "0000003100035584071991";
-          var aliasCBU = "alemonkeys";
+          var cbu = "00000031000333384071991";
+          var aliasCBU = "octopusapps";
           var phoneNumber = "+5492995328099";
           reserveButton.addEventListener("click", function () {
             // Capturar la fecha y la hora del turno actual
@@ -314,17 +320,17 @@ document.addEventListener("DOMContentLoaded",  function () {
             let hora = turno.hora;  // Asegúrate de que esto coincide con cómo obtienes la hora desde el backend
 
             // Construir el mensaje
-            let mensaje = `Hola! Quiero reservar un turno para el día ${fecha} a las ${hora}. Te comparto el coprobante de pago de la seña `;
+            let mensaje = `Hola! Quiero reservar un turno para el día ${fecha} a las ${hora}. Te comparto el comprobante de pago de la seña `;
 
             // Codificar el mensaje
             let mensajeCodificado = encodeURIComponent(mensaje);
 
             // Construir la URL completa
-            let urlWhatsApp = `https://api.whatsapp.com/send?phone=2996724372&text=${mensajeCodificado}`;
+            let urlWhatsApp = `https://api.whatsapp.com/send?phone=2996738175&text=${mensajeCodificado}`;
             // Muestra el SweetAlert
-            Swal.fire({
+            Swal.fire({  
               html: `
-      <p>👉Para finalizar realizá <br> una seña de $400 <br> 💈 Si no podés asistir avisá con anticipación, y tu seña quedará a favor <br> en tu próximo corte 💈 Gracias.</p>
+      <p>👉Para finalizar realizá <br> una seña de $500 <br> 💈 Si no podés asistir avisá con anticipación, y tu seña quedará a favor <br> en tu próximo corte 💈 Gracias.</p>
   
       <div id="acciones" style="display: flex; flex-direction: column;">
         
