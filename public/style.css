@@ -356,3 +356,23 @@ display: flex;
   background: url('./img/icono-circulo-vacio.svg') no-repeat center center;
   background-size: contain;
 }
+
+
+.boton-estado{
+  font-size: 37px;
+    border: none;
+    padding: 14px 28px;
+    margin: 6px;
+    font-weight: 700;
+    color: white;
+   
+    clip-path: polygon(0% 0%, /* Punto superior izquierdo */ 100% 0%, /* Punto superior derecho */ 80% 50%, /* Punto de la derecha hacia abajo en la mitad */ 100% 100%, /* Punto inferior derecho */ 0% 100%);
+    transition: all 0.3s ease;
+    display: inline-block;
+    width: 150px;
+    height: 75px;
+    line-height: 50px;
+    text-align: center;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+}
